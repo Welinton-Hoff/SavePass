@@ -1,66 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
-  Container,
-  ShowPasswordButton,
   Icon,
-  PassData,
+  Email,
   Title,
+  PassData,
   Password,
+  Container,
   LoginData,
   BoldTitle,
-  Email,
-} from './styles';
+  ShowPasswordButton,
+} from "./styles";
 
-interface Props {
-  service_name: string;
+interface LoginDataItemProps {
   email: string;
   password: string;
+  service_name: string;
 }
 
-export function LoginDataItem({
-  service_name,
-  email,
-  password
-}: Props) {
+export function LoginDataItem(props: LoginDataItemProps) {
+  const { service_name, email, password } = props;
   const [passIsVisible, setPassIsVisible] = useState(false);
 
   function handleTogglePassIsVisible() {
     setPassIsVisible(!passIsVisible);
   }
 
+  function PassIsVisible() {
+    if (passIsVisible) {
+      return (
+        <PassData>
+          <Title>{service_name}</Title>
+          <Password>{password}</Password>
+        </PassData>
+      );
+    }
+
+    return (
+      <LoginData>
+        <BoldTitle>{service_name}</BoldTitle>
+        <Email>{email}</Email>
+      </LoginData>
+    );
+  }
+
   return (
-    <Container
-      colors={[
-        passIsVisible
-          ? '#EBF2FF'
-          : '#ffffff',
-        '#ffffff'
-      ]}
-    >
-      <ShowPasswordButton
-        onPress={handleTogglePassIsVisible}
-      >
+    <Container colors={[passIsVisible ? "#EBF2FF" : "#ffffff", "#ffffff"]}>
+      <ShowPasswordButton onPress={handleTogglePassIsVisible}>
         <Icon
           name={passIsVisible ? "eye" : "eye-off"}
-          color={passIsVisible ? '#1967FB' : '#888D97'}
+          color={passIsVisible ? "#1967FB" : "#888D97"}
         />
       </ShowPasswordButton>
 
-      {passIsVisible
-        ? (
-          <PassData>
-            <Title>{service_name}</Title>
-            <Password>{password}</Password>
-          </PassData>
-        )
-        : (
-          <LoginData>
-            <BoldTitle>{service_name}</BoldTitle>
-            <Email>{email}</Email>
-          </LoginData>
-        )
-      }
+      <PassIsVisible />
     </Container>
   );
 }

@@ -1,38 +1,39 @@
-import React, { useState } from 'react';
-import { TextInputProps } from 'react-native';
-import { Control, Controller } from 'react-hook-form';
+import React, { useState } from "react";
+import { TextInputProps } from "react-native";
+import { Control, Controller } from "react-hook-form";
 
 import {
-  Container,
+  Icon,
   Label,
   Error,
-  InputContainer,
+  Container,
   FormInput,
+  InputContainer,
   ToggleShowPassButton,
-  Icon
-} from './styles';
+} from "./styles";
 
-interface Props extends TextInputProps {
-  control: Control;
+interface InputProps extends TextInputProps {
   name: string;
   title: string;
   error: string;
+  control: Control;
 }
 
-export function Input({
-  name,
-  control,
-  title,
-  error,
-  secureTextEntry,
-  ...rest
-}: Props) {
+export function Input(props: InputProps) {
+  const { name, title, error, control, secureTextEntry, ...rest } = props;
   const [passwordHidden, setPasswordHidden] = useState(true);
+
+  const SecureTextEntry = () => (
+    <ToggleShowPassButton onPress={() => setPasswordHidden(!passwordHidden)}>
+      <Icon name={passwordHidden ? "eye-off" : "eye"} />
+    </ToggleShowPassButton>
+  );
 
   return (
     <Container>
       <Label>{title}</Label>
-      {error && <Error>{error}</Error>}
+      {!!error && <Error>{error}</Error>}
+
       <Controller
         name={name}
         control={control}
@@ -40,18 +41,15 @@ export function Input({
           <InputContainer>
             <FormInput
               {...rest}
-              onChangeText={onChange}
               value={value}
-              secureTextEntry={secureTextEntry && passwordHidden}
+              onChangeText={onChange}
+              secureTextEntry={!!secureTextEntry && passwordHidden}
             />
-            {secureTextEntry && (
-              <ToggleShowPassButton onPress={() => setPasswordHidden(!passwordHidden)}>
-                <Icon name={passwordHidden ? "eye-off" : "eye"} />
-              </ToggleShowPassButton>
-            )}
+
+            {!!secureTextEntry && <SecureTextEntry />}
           </InputContainer>
         )}
       />
     </Container>
-  )
+  );
 }

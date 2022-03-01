@@ -1,19 +1,19 @@
-import styled from 'styled-components/native';
-import Feather from '@expo/vector-icons/Feather';
-import { LinearGradient } from 'expo-linear-gradient';
-import { RFValue } from 'react-native-responsive-fontsize';
+import styled from "styled-components/native";
+import Feather from "@expo/vector-icons/Feather";
+import { LinearGradient } from "expo-linear-gradient";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled(LinearGradient).attrs({
-  end: { x: 1, y: 0 }
+  end: { x: 1, y: 0 },
 })`
-  border: 1px #e3e4e5;
-  flex-direction: row;
-  align-items: center;
-  min-height: ${RFValue(80)}px;
   width: 100%;
   border-radius: 4px;
   padding: 22px 20px;
   margin-bottom: 8px;
+  flex-direction: row;
+  border: 1px #e3e4e5;
+  align-items: center;
+  min-height: ${RFValue(80)}px;
 `;
 
 export const ShowPasswordButton = styled.TouchableOpacity``;
@@ -21,8 +21,8 @@ export const ShowPasswordButton = styled.TouchableOpacity``;
 export const Icon = styled(Feather).attrs({
   size: 24,
 })`
-  margin-right: 20px;
   opacity: 0.6;
+  margin-right: 20px;
 `;
 
 export const PassData = styled.View`
@@ -30,16 +30,16 @@ export const PassData = styled.View`
 `;
 
 export const Title = styled.Text`
-  margin-bottom: ${RFValue(4)}px;
-  font-family: 'Rubik_400Regular';
+  color: #888d97;
   font-size: ${RFValue(13)}px;
-  color: #888D97;
+  margin-bottom: ${RFValue(4)}px;
+  font-family: "Rubik_400Regular";
 `;
 
 export const Password = styled.Text`
-  font-family: 'Rubik_500Medium';
+  color: #1967fb;
   font-size: ${RFValue(15)}px;
-  color: #1967FB;
+  font-family: "Rubik_500Medium";
 `;
 
 export const LoginData = styled.View`
@@ -47,14 +47,14 @@ export const LoginData = styled.View`
 `;
 
 export const BoldTitle = styled.Text`
-  margin-bottom: ${RFValue(4)}px;
-  font-family: 'Rubik_500Medium';
+  color: #3d434d;
   font-size: ${RFValue(15)}px;
-  color: #3D434D;
+  font-family: "Rubik_500Medium";
+  margin-bottom: ${RFValue(4)}px;
 `;
 
 export const Email = styled.Text`
-  font-family: 'Rubik_400Regular';
+  color: #888d97;
   font-size: ${RFValue(13)}px;
-  color: #888D97;
+  font-family: "Rubik_400Regular";
 `;
