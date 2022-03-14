@@ -67,6 +67,7 @@ export function RegisterLoginData() {
             testID="service-name-input"
             error={errors.service_name && errors.service_name.message}
           />
+
           <Input
             name="email"
             title="E-mail"
@@ -77,6 +78,7 @@ export function RegisterLoginData() {
             keyboardType="email-address"
             error={errors.email && errors.email.message}
           />
+
           <Input
             title="Senha"
             name="password"
